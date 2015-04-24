@@ -1,0 +1,31 @@
+<h1>Listing ibuks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Price</th>
+      <th>Uid</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ibuks.each do |ibuk| %>
+      <tr>
+        <td><%= ibuk.title %></td>
+        <td><%= ibuk.price %></td>
+        <td><%= ibuk.uid %></td>
+        <td><%= ibuk.user %></td>
+        <td><%= link_to 'Show', ibuk %></td>
+        <td><%= link_to 'Edit', edit_ibuk_path(ibuk) %></td>
+        <td><%= link_to 'Destroy', ibuk, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ibuk', new_ibuk_path %>
