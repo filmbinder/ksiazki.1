@@ -29,6 +29,7 @@ class IbuksController < ApplicationController
   # POST /ibuks.json
   def create
     @ibuk = Ibuk.new(ibuk_params)
+    @ibuk.user = current_user
 
     respond_to do |format|
       if @ibuk.save
