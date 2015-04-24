@@ -1,6 +1,5 @@
-<h1>Editing ibuk</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @ibuk %> |
-<%= link_to 'Back', ibuks_path %>
+<%- model_class = Ibuk -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => Ibuk %></h1>
+</div>
+<%= render :partial => 'form' %>

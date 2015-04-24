@@ -1,31 +1,40 @@
-<h1>Listing ibuks</h1>
-
-<table>
+<%- model_class = Ibuk -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Ibuk %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Price</th>
-      <th>Uid</th>
-      <th>User</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:price) %></th>
+      <th><%= model_class.human_attribute_name(:uid) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @ibuks.each do |ibuk| %>
       <tr>
+        <td><%= ibuk.id %></td>
         <td><%= ibuk.title %></td>
         <td><%= ibuk.price %></td>
         <td><%= ibuk.uid %></td>
-        <td><%= ibuk.user %></td>
-        <td><%= link_to 'Show', ibuk %></td>
-        <td><%= link_to 'Edit', edit_ibuk_path(ibuk) %></td>
-        <td><%= link_to 'Destroy', ibuk, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l ibuk.created_at, format: :long %></td>
+        <td>
+          <%= link_to ibuk_path(ibuk), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to ibuk_path(ibuk), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Ibuk', new_ibuk_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_ibuk_path,
+            :class => 'btn btn-primary' %>
